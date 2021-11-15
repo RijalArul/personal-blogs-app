@@ -1,11 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setActionRegister } from '../store/actions/action'
+import { setActionRegister, setErrors } from '../store/actions/action'
+import { toast } from 'react-toastify'
 
 function Register () {
   const dispatch = useDispatch()
-  const { gender, status } = useSelector(state => state.userState)
+  const { gender, status, errors } = useSelector(state => state.userState)
   const [user, setUser] = useState({})
+
+  useEffect(() => {
+    if (errors) {
+      errors.forEach(error => {
+        toast.error(error.message)
+      })
+      dispatch(setErrors(''))
+    }
+  }, [dispatch, errors])
 
   function handleRegister (e) {
     e.preventDefault()
