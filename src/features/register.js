@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { setActionRegister } from '../store/actions/action'
 
 function Register () {
   const dispatch = useDispatch()
@@ -8,7 +9,7 @@ function Register () {
 
   function handleRegister (e) {
     e.preventDefault()
-    console.log(user)
+    dispatch(setActionRegister(user))
   }
 
   function handleChange (e) {
