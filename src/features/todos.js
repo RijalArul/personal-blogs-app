@@ -8,7 +8,25 @@ import { useSelector } from 'react-redux'
 
 function Todos () {
   const [value, onChange] = useState(new Date())
-  const { todos } = useSelector(state => state.todoState)
+  const [todo, setTodo] = useState({})
+  const { todos, status } = useSelector(state => state.todoState)
+
+  function handleAddTodo (e) {
+    e.preventDefault()
+    console.log(todo)
+  }
+
+  function handleChange (e) {
+    setTodo({
+      ...todo,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleDateTimeRangePickerChange = _value => {
+    onChange(_value)
+    handleChange({ target: { name: 'due_on', value: _value } })
+  }
 
   return (
     <>
@@ -53,32 +71,46 @@ function Todos () {
               <div class='modal-body'>
                 <div class='float-right'>
                   <img src={ImageAddTodos} className='add-todos-images' />
-                  <form>
+                  <form onSubmit={handleAddTodo}>
                     <div class='form-group'>
                       <input
                         type='text'
                         class='form-control'
                         id='exampleInputTitle1'
                         placeholder='title'
+                        name='title'
+                        onChange={e => handleChange(e)}
                       />
                     </div>
                     <div class='form-group'>
                       <DateTimePicker
-                        onChange={onChange}
                         value={value}
+                        name='due_on'
                         minDate={moment().toDate()}
                         placeholderText='Select a day'
                         className='add-todos-dates'
+                        onChange={handleDateTimeRangePickerChange}
                       />
                     </div>
 
                     <div class='form-group'>
-                      <select class='form-control' id='select-status'>
+                      <select
+                        class='form-control'
+                        id='select-status'
+                        name='status'
+                        onChange={e => handleChange(e)}
+                      >
                         <option selected disabled>
                           Select Status
                         </option>
-                        <option>Active</option>
-                        <option>Inactive</option>
+                        {status &&
+                          status.map(status => {
+                            return (
+                              <option value={status.value}>
+                                {status.value}
+                              </option>
+                            )
+                          })}
                       </select>
                     </div>
                     <button
