@@ -1,3 +1,4 @@
+import { SET_USER, SET_ERRORS } from '../keys'
 const initialState = {
   currentUser: {},
   gender: [
@@ -21,8 +22,8 @@ const initialState = {
 function userReducer (state = initialState, action) {
   const { type, payload } = action
   switch (type) {
-    case 'USER_REGISTER':
-      return { ...state }
+    case SET_USER:
+      return { ...state, currentUser: payload }
     default:
       return state
   }

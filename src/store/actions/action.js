@@ -1,4 +1,4 @@
-const { SET_USER, SET_ERRORS } = require('../keys')
+import { SET_USER, SET_ERRORS } from '../keys'
 
 export function setUser (payload) {
   return {
@@ -9,6 +9,10 @@ export function setUser (payload) {
 
 export function setActionRegister (payload) {
   return function (dispatch) {
-    console.log(payload)
+    try {
+      dispatch(setUser(payload))
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
