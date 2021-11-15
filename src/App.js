@@ -6,10 +6,13 @@ import Posts from './features/posts'
 import PostDetail from './features/postDetail'
 import PrivateRoutes from './routers/PrivateRoutes'
 import PublicRoutes from './routers/PublicRoutes'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App () {
   return (
     <div className='App'>
+      <ToastContainer autoClose={1500} />
       <Routes>
         <Route
           path='/register'
