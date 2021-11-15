@@ -102,7 +102,10 @@ function Todos () {
             </div>
           </div>
         </div>
-        <CardTodos />
+        {todos &&
+          todos.map(todo => {
+            return <CardTodos key={todo.id} todo={todo} />
+          })}
       </div>
     </>
   )
