@@ -7,27 +7,6 @@ import PostDetail from './features/postDetail'
 import PrivateRoutes from './routers/PrivateRoutes'
 
 function App () {
-  // function PrivateRoutes ({ children }) {
-  //   // let auth = useAuth()
-  //   let location = useLocation()
-
-  //   if (!localStorage.getItem('access_token')) {
-  //     return <Navigate to='/register' state={{ from: location }} />
-  //   }
-
-  //   return children
-  // }
-
-  function PublicRoutes ({ children }) {
-    let location = useLocation()
-
-    if (localStorage.getItem('access_token')) {
-      return <Navigate to='/todos' state={{ from: location }} />
-    }
-
-    return children
-  }
-
   return (
     <div className='App'>
       <Routes>
