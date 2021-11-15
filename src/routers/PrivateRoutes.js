@@ -1,7 +1,6 @@
-import { Route, Navigate, useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 
 function PrivateRoutes ({ children }) {
-  // let auth = useAuth()
   let location = useLocation()
 
   if (!localStorage.getItem('access_token')) {

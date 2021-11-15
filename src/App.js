@@ -5,6 +5,7 @@ import Todos from './features/todos'
 import Posts from './features/posts'
 import PostDetail from './features/postDetail'
 import PrivateRoutes from './routers/PrivateRoutes'
+import PublicRoutes from './routers/PublicRoutes'
 
 function App () {
   return (
