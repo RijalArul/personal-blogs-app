@@ -1,0 +1,2 @@
+const SET_USER = 'SET_USER'
+const SET_ERRORS = 'SET_ERRORS'

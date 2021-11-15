@@ -1,6 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Register () {
+  const [user, setUser] = useState({})
+  const [gender, setGender] = useState([])
+  const [status, setStatus] = useState([])
+
+  useEffect(() => {
+    setGender([
+      {
+        value: 'male'
+      },
+      {
+        value: 'female'
+      }
+    ])
+  }, [])
+
+  useEffect(() => {
+    setStatus([
+      {
+        value: 'active'
+      },
+      {
+        value: 'inactive'
+      }
+    ])
+  }, [])
+
+  function handleRegister (e) {
+    e.preventDefault()
+    console.log(user)
+  }
+
+  function handleChange (e) {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  }
   return (
     <>
       <div>
@@ -19,37 +56,68 @@ function Register () {
           </h5>
 
           <div class='card-register-body'>
-            <form>
+            <form onSubmit={handleRegister}>
               <div class='form-group'>
                 <input
                   type='email'
+                  name='email'
                   class='form-control'
                   id='exampleInputEmail1'
                   aria-describedby='emailHelp'
                   placeholder='Enter email'
+                  onChange={e => handleChange(e)}
                 />
               </div>
               <div class='form-group'>
                 <input
                   type='text'
+                  name='name'
                   class='form-control'
                   id='exampleInputname1'
                   placeholder='name'
+                  onChange={e => handleChange(e)}
                 />
               </div>
               <div class='form-group'>
-                <select class='form-control' id='select-gender'>
+                <select
+                  class='form-control'
+                  id='select-gender'
+                  name='gender'
+                  onChange={e => handleChange(e)}
+                >
                   <option selected disabled>
                     Select Gender
                   </option>
-                  <option>Male</option>
-                  <option>Female</option>
+                  {gender &&
+                    gender.map(gen => {
+                      return (
+                        <>
+                          <option value={gen.value} name={gen.value}>
+                            {gen.value}
+                          </option>
+                        </>
+                      )
+                    })}
                 </select>
               </div>
               <div class='form-group mb-5'>
-                <select class='form-control' id='select-status'>
-                  <option>Active</option>
-                  <option>Inactive</option>
+                <select
+                  class='form-control'
+                  id='select-status'
+                  onChange={e => handleChange(e)}
+                  name='status'
+                >
+                  <option selected disabled>
+                    Select Status
+                  </option>
+                  {status &&
+                    status.map(status => {
+                      return (
+                        <>
+                          <option value={status.value}>{status.value}</option>
+                        </>
+                      )
+                    })}
                 </select>
               </div>
               <button
