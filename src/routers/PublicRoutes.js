@@ -2,7 +2,7 @@ import { Navigate, useLocation } from 'react-router-dom'
 function PublicRoutes ({ children }) {
   let location = useLocation()
 
-  if (localStorage.getItem('access_token')) {
+  if (localStorage.getItem('currentUser')) {
     return <Navigate to='/todos' state={{ from: location }} />
   }
 

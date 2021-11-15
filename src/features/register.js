@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { setActionRegister, setErrors } from '../store/actions/action'
 import { toast } from 'react-toastify'
 
 function Register () {
   const dispatch = useDispatch()
-  const { gender, status, errors } = useSelector(state => state.userState)
+  const navigation = useNavigate()
+  const { gender, status, errors, currentUser } = useSelector(
+    state => state.userState
+  )
   const [user, setUser] = useState({})
 
   useEffect(() => {
@@ -14,6 +18,13 @@ function Register () {
         toast.error(error.message)
       })
       dispatch(setErrors(''))
+    }
+
+    if (localStorage.getItem('currentUser')) {
+      toast.success('Register sucess')
+      setTimeout(() => {
+        navigation('/todos')
+      }, 2000)
     }
   }, [dispatch, errors])
 

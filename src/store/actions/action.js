@@ -34,7 +34,7 @@ export function setActionRegister (payload) {
         throw { name: 'Error_Register', errors: data }
       } else {
         const { data } = await response.json()
-        localStorage.setItem('currentUser', data)
+        localStorage.setItem('currentUser', JSON.stringify(data))
         dispatch(setUser())
       }
     } catch (err) {
