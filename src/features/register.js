@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { setActionRegister, setErrors } from '../store/actions/action'
+import { setActionRegister, setErrors } from '../store/actions/userAction'
 import { toast } from 'react-toastify'
 
 function Register () {
   const dispatch = useDispatch()
   const navigation = useNavigate()
-  const { gender, status, errors, currentUser } = useSelector(
-    state => state.userState
-  )
+  const { gender, status, errors } = useSelector(state => state.userState)
   const [user, setUser] = useState({})
 
   useEffect(() => {

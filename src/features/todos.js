@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import ImageAddTodos from '../assets/image/hands-character-writing-letter-desk-with-papers-pencil-envelopes-coffee-cup_74855-10720.jpg'
 import DateTimePicker from 'react-datetime-picker'
 import * as moment from 'moment'
+import CardTodos from '../components/CardTodos'
 
 function Todos () {
   const [value, onChange] = useState(new Date())
@@ -99,32 +100,7 @@ function Todos () {
             </div>
           </div>
         </div>
-        <div class='card mt-3 mb-3'>
-          <div class='card-body-todos'>
-            <h5>
-              This is some text within a card body, 14 November 2021 08:20:17{' '}
-              <select className='select-active'>
-                <option>1</option>
-                <option>1</option>
-                <option>1</option>
-              </select>
-              <button>Delete</button>
-            </h5>
-          </div>
-        </div>
-        <div class='card mt-3 mb-3'>
-          <div class='card-body-todos'>
-            <h5>
-              This is some text within a card body, 14 November 2021 08:20:17{' '}
-              <select className='select-active'>
-                <option>1</option>
-                <option>1</option>
-                <option>1</option>
-              </select>
-              <button>Delete</button>
-            </h5>
-          </div>
-        </div>
+        <CardTodos />
       </div>
     </>
   )
