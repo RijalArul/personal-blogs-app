@@ -9,6 +9,9 @@ function todoReducer (state = initialState, action) {
   switch (type) {
     case SET_TODOS:
       return { ...state }
+
+    default:
+      return state
   }
 }
 

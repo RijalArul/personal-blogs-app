@@ -1,6 +1,6 @@
 import { SET_USER, SET_ERRORS } from '../keys'
 const initialState = {
-  currentUser: {},
+  currentUser: JSON.parse(localStorage.getItem('currentUser')),
   errors: [],
   gender: [
     {
@@ -26,7 +26,7 @@ function userReducer (state = initialState, action) {
     case SET_USER:
       return {
         ...state,
-        currentUser: localStorage.getItem('currentUser'),
+        currentUser: state.currentUser,
         errors: null
       }
     case SET_ERRORS:
