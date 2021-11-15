@@ -6,8 +6,13 @@ function Navbar () {
   const navigation = useNavigate()
 
   function navigatePosts () {
-    console.log('Masuk')
+    navigation('/posts')
   }
+
+  function navigationTodos () {
+    navigation('/todos')
+  }
+
   return (
     <>
       <nav class='navbar navbar-expand-lg navbar-light '>
@@ -42,7 +47,12 @@ function Navbar () {
               >
                 Posts
               </a>
-              <a class='nav-link' href='#' style={{ color: 'white' }}>
+              <a
+                class='nav-link'
+                href='#'
+                style={{ color: 'white' }}
+                onClick={() => navigationTodos()}
+              >
                 Todos
               </a>
               <a class='nav-link' href='#' style={{ color: 'white' }}>
