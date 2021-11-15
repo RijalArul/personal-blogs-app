@@ -1,16 +1,52 @@
 import './App.css'
 import Register from './features/register'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Todos from './features/todos'
 import Posts from './features/posts'
 import PostDetail from './features/postDetail'
+import PrivateRoutes from './routers/PrivateRoutes'
 
 function App () {
+  // function PrivateRoutes ({ children }) {
+  //   // let auth = useAuth()
+  //   let location = useLocation()
+
+  //   if (!localStorage.getItem('access_token')) {
+  //     return <Navigate to='/register' state={{ from: location }} />
+  //   }
+
+  //   return children
+  // }
+
+  function PublicRoutes ({ children }) {
+    let location = useLocation()
+
+    if (localStorage.getItem('access_token')) {
+      return <Navigate to='/todos' state={{ from: location }} />
+    }
+
+    return children
+  }
+
   return (
     <div className='App'>
       <Routes>
-        <Route path='/register' element={<Register />} />
-        <Route path='/todos' element={<Todos />} />
+        <Route
+          path='/register'
+          element={
+            <PublicRoutes>
+              <Register />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path='/todos'
+          element={
+            <PrivateRoutes>
+              <Todos />
+            </PrivateRoutes>
+          }
+        />
         <Route path='/posts' element={<Posts />} />
         <Route path='/posts/:id' element={<PostDetail />} />
       </Routes>
