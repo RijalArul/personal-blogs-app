@@ -4,16 +4,11 @@ import ImageAddTodos from '../assets/image/hands-character-writing-letter-desk-w
 import DateTimePicker from 'react-datetime-picker'
 import * as moment from 'moment'
 import CardTodos from '../components/CardTodos'
-import { useDispatch } from 'react-redux'
-import { actionFetchTodos } from '../store/actions/todoActions'
+import { useSelector } from 'react-redux'
 
 function Todos () {
-  const dispatch = useDispatch()
   const [value, onChange] = useState(new Date())
-
-  useEffect(() => {
-    dispatch(actionFetchTodos())
-  }, [])
+  const { todos } = useSelector(state => state.todoState)
 
   return (
     <>
