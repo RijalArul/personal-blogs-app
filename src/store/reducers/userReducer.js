@@ -1,5 +1,21 @@
 const initialState = {
-  currentUser: {}
+  currentUser: {},
+  gender: [
+    {
+      value: 'male'
+    },
+    {
+      value: 'female'
+    }
+  ],
+  status: [
+    {
+      value: 'active'
+    },
+    {
+      value: 'inactive'
+    }
+  ]
 }
 
 function userReducer (state = initialState, action) {
