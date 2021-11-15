@@ -1,7 +1,13 @@
 import React from 'react'
 import ImageNavbar from '../assets/image/409-4090562_smartphone-vector-mobile-screen-icon-png.png'
+import { useNavigate } from 'react-router-dom'
 
 function Navbar () {
+  const navigation = useNavigate()
+
+  function navigatePosts () {
+    console.log('Masuk')
+  }
   return (
     <>
       <nav class='navbar navbar-expand-lg navbar-light '>
@@ -28,13 +34,18 @@ function Navbar () {
           </button>
           <div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
             <div class='navbar-nav'>
-              <a class='nav-link active' aria-current='page' href='#'>
+              <a
+                className='nav-link active'
+                href='#'
+                style={{ color: 'white' }}
+                onClick={() => navigatePosts()}
+              >
                 Posts
               </a>
-              <a class='nav-link' href='#'>
+              <a class='nav-link' href='#' style={{ color: 'white' }}>
                 Todos
               </a>
-              <a class='nav-link' href='#'>
+              <a class='nav-link' href='#' style={{ color: 'white' }}>
                 Notification
               </a>
             </div>
