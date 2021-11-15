@@ -8,7 +8,7 @@ function todoReducer (state = initialState, action) {
   const { type, payload } = action
   switch (type) {
     case SET_TODOS:
-      return { ...state }
+      return { ...state, todos: payload }
 
     default:
       return state
