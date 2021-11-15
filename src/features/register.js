@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Register () {
   const dispatch = useDispatch()
+  const { gender, status } = useSelector(state => state.userState)
   const [user, setUser] = useState({})
-  // const [gender, setGender] = useState([])
-  // const [status, setStatus] = useState([])
-
-  // useEffect(() => {
-  //   setGender()
-  // }, [])
-
-  // useEffect(() => {
-  //   setStatus()
-  // }, [])
 
   function handleRegister (e) {
     e.preventDefault()
