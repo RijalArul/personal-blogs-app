@@ -1,7 +1,15 @@
 import { SET_TODOS } from '../keys'
 
 const initialState = {
-  todos: []
+  todos: [],
+  status: [
+    {
+      value: 'completed'
+    },
+    {
+      value: 'pending'
+    }
+  ]
 }
 
 function todoReducer (state = initialState, action) {
