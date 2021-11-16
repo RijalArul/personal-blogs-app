@@ -79,24 +79,25 @@ export function actionFetchTodo (payload) {
 export function actionEditTodo (payload) {
   return async function (dispatch, getState) {
     try {
-      const response = await fetch(`${API_URL}/todos/${payload.id}`, {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${API_KEY}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      })
+      console.log(payload)
+      //   const response = await fetch(`${API_URL}/todos/${payload.id}`, {
+      //     method: 'PUT',
+      //     headers: {
+      //       Authorization: `Bearer ${API_KEY}`,
+      //       Accept: 'application/json',
+      //       'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify(payload)
+      //   })
 
-      const { data } = await response.json()
+      //   const { data } = await response.json()
 
-      const todos = getState().todoState.todos
-      let todo = getState().todoState.todo
-      const indexTodo = todos.findIndex(el => el.id === data.id)
-      todos[indexTodo] = data
-      todo = todos[indexTodo]
-      dispatch(setTodo(todo))
+      //   const todos = getState().todoState.todos
+      //   let todo = getState().todoState.todo
+      //   const indexTodo = todos.findIndex(el => el.id === data.id)
+      //   todos[indexTodo] = data
+      //   todo = todos[indexTodo]
+      //   dispatch(setTodo(todo))
     } catch (err) {
       console.log(err)
     }

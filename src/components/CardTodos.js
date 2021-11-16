@@ -15,7 +15,7 @@ function CardTodos ({ todo }) {
 
   function handleEditTodo (e) {
     e.preventDefault()
-    dispatch(actionEditTodo(todo))
+    dispatch(actionEditTodo(statusTodo))
   }
 
   function handleChange (e) {
