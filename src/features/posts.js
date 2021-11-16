@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import ImageAddTodos from '../assets/image/hands-character-writing-letter-desk-with-papers-pencil-envelopes-coffee-cup_74855-10720.jpg'
 import CardPosts from '../components/CardPosts'
@@ -7,10 +7,24 @@ import { actionFetchPosts } from '../store/actions/postActions'
 
 function Posts () {
   const dispatch = useDispatch()
+  const [addPost, setAddPost] = useState({})
   const { posts } = useSelector(state => state.postState)
   useEffect(() => {
     dispatch(actionFetchPosts())
   }, [dispatch])
+
+  function handleAddPost (e) {
+    e.preventDefault()
+    console.log(addPost)
+  }
+
+  function handleChange (e) {
+    setAddPost({
+      ...addPost,
+      [e.target.name]: e.target.value
+    })
+  }
+
   return (
     <>
       <Navbar />
@@ -53,13 +67,15 @@ function Posts () {
               <div class='modal-body'>
                 <div class='float-right'>
                   <img src={ImageAddTodos} className='add-todos-images' />
-                  <form>
+                  <form onSubmit={handleAddPost}>
                     <div class='form-group'>
                       <input
                         type='text'
                         class='form-control'
                         id='exampleInputTitle1'
                         placeholder='title'
+                        name='title'
+                        onChange={e => handleChange(e)}
                       />
                     </div>
                     <div class='mb-3'>
@@ -68,6 +84,8 @@ function Posts () {
                         id='exampleFormControlTextarea1'
                         placeholder='body'
                         rows='9'
+                        name='body'
+                        onChange={e => handleChange(e)}
                       ></textarea>
                     </div>
                     <button
