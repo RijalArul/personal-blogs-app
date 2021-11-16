@@ -3,25 +3,27 @@ import Navbar from '../components/Navbar'
 import ImageAddTodos from '../assets/image/hands-character-writing-letter-desk-with-papers-pencil-envelopes-coffee-cup_74855-10720.jpg'
 import CardPosts from '../components/CardPosts'
 import { useSelector, useDispatch } from 'react-redux'
-import { actionFetchPosts } from '../store/actions/postActions'
+import { actionAddPost, actionFetchPosts } from '../store/actions/postActions'
 
 function Posts () {
   const dispatch = useDispatch()
   const [addPost, setAddPost] = useState({})
   const { posts } = useSelector(state => state.postState)
+  const { currentUser } = useSelector(state => state.userState)
   useEffect(() => {
     dispatch(actionFetchPosts())
   }, [dispatch])
 
   function handleAddPost (e) {
     e.preventDefault()
-    dispatch()
+    dispatch(actionAddPost(addPost))
   }
 
   function handleChange (e) {
     setAddPost({
       ...addPost,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      user_id: currentUser.id
     })
   }
 

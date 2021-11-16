@@ -1,7 +1,6 @@
 import react from 'react'
 
 function CardPosts ({ post }) {
-  console.log(post)
   return (
     <>
       <div class='card mt-5'>

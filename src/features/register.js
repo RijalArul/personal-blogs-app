@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { setActionRegister, setErrors } from '../store/actions/userAction'
+import { setActionRegister, setErrors } from '../store/actions/action'
 import { toast } from 'react-toastify'
 
 function Register () {

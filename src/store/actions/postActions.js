@@ -37,12 +37,13 @@ export function actionAddPost (payload) {
           Accept: 'application/json',
           'Content-Type': 'application/json'
         },
-        data: JSON.stringify(payload)
+        body: JSON.stringify(payload)
       })
 
       const { data } = await response.json()
       const { posts } = getState().postState
-      const newPosts = posts.unshift(data)
+      const newPosts = [...posts, data]
+      console.log(newPosts)
       dispatch(setPosts(newPosts))
     } catch (err) {
       console.log(err)
