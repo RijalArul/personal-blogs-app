@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import * as moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
-import { actionFetchTodo } from '../store/actions/todoActions'
+import { actionFetchTodo, actionFetchTodos } from '../store/actions/todoActions'
 
 function CardTodos ({ todo }) {
   const dispatch = useDispatch()
@@ -15,7 +15,14 @@ function CardTodos ({ todo }) {
 
   function handleEditTodo (e) {
     e.preventDefault()
-    console.log(statusTodo)
+    dispatch(handleEditTodo(statusTodo))
+  }
+
+  function handleChange (e) {
+    setStatusTodo({
+      ...statusTodo,
+      [e.target.name]: e.target.value
+    })
   }
 
   function editClick (id) {
@@ -65,14 +72,14 @@ function CardTodos ({ todo }) {
                   </div>
                   <div class='modal-body'>
                     <div class='float-right'>
-                      <form>
+                      <form onSubmit={handleEditTodo}>
                         <div class='form-group'>
                           <select
                             class='form-control'
                             id='select-status'
                             name='status'
-                            value={todo.status}
-                            // onChange={e => handleChange(e)}
+                            value={statusTodo.status}
+                            onChange={e => handleChange(e)}
                           >
                             {status &&
                               status.map(status => {
