@@ -13,4 +13,3 @@ export const SET_POST = 'SET_POST'
 // Comments
 export const SET_COMMENTS = 'SET_COMMENTS'
 export const SET_COMMENT = 'SET_COMMENT'
-export const SET_EDIT_COMMENT = 'SET_EDIT_COMMENT'

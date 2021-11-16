@@ -20,6 +20,10 @@ function CardComment ({ comment }) {
     dispatch(actionFetchComment(id))
   }
 
+  function deleteComment (id) {
+    console.log(id)
+  }
+
   function handleEditSubmit (e) {
     e.preventDefault()
     dispatch(actionEditComment(editComment))
@@ -55,6 +59,7 @@ function CardComment ({ comment }) {
               className='btn btn-primary btn-add-todos'
               data-toggle='modal'
               data-target='#editComment'
+              style={{ marginRight: '10px' }}
               onClick={() => editClickComment(comment.id)}
             >
               <i class='fas fa-edit' style={{ color: 'white' }}></i>
@@ -119,7 +124,11 @@ function CardComment ({ comment }) {
                 </div>
               </div>
             </div>
-            <button class='btn' style={{ padding: '10px' }}>
+            <button
+              class='btn btn-danger btn-add-todos'
+              style={{ marginRight: '10px' }}
+              onClick={() => deleteComment(comment.id)}
+            >
               <i class='fas fa-trash-alt' style={{ color: '#FE5320' }}></i>
             </button>
           </div>
