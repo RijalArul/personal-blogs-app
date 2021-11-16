@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actionFetchPost } from '../store/actions/postActions'
 function PostDetail () {
   const { id } = useParams()
+  const { post } = useSelector(state => state.postState)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(actionFetchPost(id))
   }, [dispatch])
+
+  console.log(post)
 
   return (
     <>

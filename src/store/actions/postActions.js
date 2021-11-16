@@ -60,7 +60,15 @@ export function actionAddPost (payload) {
 export function actionFetchPost (payload) {
   return async function (dispatch, getState) {
     try {
-      console.log(payload)
+      const response = await fetch(`${API_URL}/posts/${payload}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${API_KEY}`
+        }
+      })
+
+      const { data } = await response.json()
+      dispatch(setPost(data))
     } catch (err) {
       console.log(err)
     }
