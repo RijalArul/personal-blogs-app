@@ -239,3 +239,12 @@ input[type='text'] {
   margin-right: 10px;
   height: 10%;
 }
+
+.comment-text-input {
+  width: 600px;
+  resize: vertical;
+}
+
+.comment-card-text {
+  margin-left: 30px;
+}

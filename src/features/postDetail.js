@@ -25,7 +25,7 @@ function PostDetail () {
 
         <div className='container mt-5 mb-5'>
           <div class='row height d-flex justify-content-center align-items-center'>
-            <div class='col-md-7'>
+            <div class='col-md-9'>
               <div class='card'>
                 <div class='p-3'>
                   <h6>Comments</h6>
@@ -38,9 +38,10 @@ function PostDetail () {
                       </label>
                       <input
                         type='text'
-                        className='form-control comment-text'
+                        className='form-control comment-text-input'
                         id='inputcomment2'
                         placeholder='comment'
+                        style={{ width: '435px', resize: 'vertical' }}
                       />
                     </div>
                     <div class='col-auto'>
@@ -50,17 +51,18 @@ function PostDetail () {
                     </div>
                   </form>
                 </div>
-                <div class='mt-2'>
+                <div className='mt-2 comment-card'>
                   <div class='w-100'>
                     <div class='d-flex justify-content-between align-items-center'>
                       <div class='d-flex flex-row align-items-center'>
                         {' '}
-                        <span class='mr-2'>Brian selter</span>{' '}
-                        <small class='c-badge'>Top Comment</small>{' '}
+                        <span class='mr-2 comment-card-text'>
+                          Brian selter
+                        </span>{' '}
                       </div>{' '}
                       <small>12h ago</small>
                     </div>
-                    <p class='text-justify comment-text mb-0'>
+                    <p class='text-justify comment-text mb-0 comment-card-text'>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Ut enim ad minim veniam
@@ -68,10 +70,10 @@ function PostDetail () {
                     <div class='d-flex flex-row user-feed'>
                       {' '}
                       <span class='wish'>
-                        <i class='fa fa-heartbeat mr-2'></i>24
+                        <i class='fa fa-heartbeat mr-2'></i>
                       </span>{' '}
                       <span class='ml-3'>
-                        <i class='fa fa-comments-o mr-2'></i>Reply
+                        <i class='fa fa-comments-o mr-2'></i>
                       </span>{' '}
                     </div>
                   </div>
