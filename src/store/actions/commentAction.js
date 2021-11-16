@@ -71,3 +71,15 @@ export function actionFetchComment (payload) {
     }
   }
 }
+
+export function actionEditComment (payload) {
+  return async function (dispatch, getState) {
+    try {
+      console.log(payload)
+      //   localStorage.setItem('comment', JSON.stringify(payload))
+      //   dispatch(setComment())
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
