@@ -1,4 +1,7 @@
 function CardComment ({ comment }) {
+  function editClickComment (id) {
+    console.log(id)
+  }
   return (
     <>
       <div className='mt-2 comment-card'>
@@ -19,7 +22,11 @@ function CardComment ({ comment }) {
           ;
           <div className='d-flex justify-content-end mt-3'>
             <button class='btn' style={{ padding: '10px' }}>
-              <i class='fas fa-edit' style={{ color: 'blue' }}></i>
+              <i
+                class='fas fa-edit'
+                style={{ color: 'blue' }}
+                onClick={() => editClickComment(comment.id)}
+              ></i>
             </button>
             <button class='btn' style={{ padding: '10px' }}>
               <i class='fas fa-trash-alt' style={{ color: '#FE5320' }}></i>

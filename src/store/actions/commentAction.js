@@ -9,6 +9,13 @@ export function setComments (payload) {
   }
 }
 
+export function setComment (payload) {
+  return {
+    type: SET_COMMENT,
+    payload
+  }
+}
+
 export function actionFetchComments (payload) {
   return async function (dispatch, getState) {
     try {
@@ -48,6 +55,15 @@ export function actionAddComments (payload) {
       const newComments = [...comments, data]
 
       dispatch(setComments(newComments))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function actionFetchComment (payload) {
+  return async function (dispatch) {
+    try {
     } catch (err) {
       console.log(err)
     }
