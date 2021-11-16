@@ -1,7 +1,9 @@
 import react, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { actionFetchComment } from '../store/actions/commentAction'
-import ImageAddTodos from '../assets/image/hands-character-writing-letter-desk-with-papers-pencil-envelopes-coffee-cup_74855-10720.jpg'
+import {
+  actionEditComment,
+  actionFetchComment
+} from '../store/actions/commentAction'
 
 function CardComment ({ comment }) {
   const dispatch = useDispatch()
@@ -14,8 +16,21 @@ function CardComment ({ comment }) {
     })
   }, [])
 
-  function editClickComment () {
-    dispatch(actionFetchComment(comment))
+  function editClickComment (id) {
+    console.log(id)
+    // dispatch(actionFetchComment(comment))
+  }
+
+  function handleEditSubmit (e) {
+    e.preventDefault()
+    dispatch(actionEditComment(editComment))
+  }
+
+  function handleChange (e) {
+    setEditComment({
+      ...commentUser,
+      [e.target.name]: e.target.value
+    })
   }
 
   return (
@@ -35,19 +50,15 @@ function CardComment ({ comment }) {
           <p class='text-justify comment-text mb-0 comment-card-text'>
             {comment.body}
           </p>
-          ;
           <div className='d-flex justify-content-end mt-3'>
             <button
               type='button'
               className='btn btn-primary btn-add-todos'
               data-toggle='modal'
               data-target='#editComment'
+              onClick={() => editClickComment(comment.id)}
             >
-              <i
-                class='fas fa-edit'
-                style={{ color: 'white' }}
-                onClick={() => editClickComment(comment.id)}
-              ></i>
+              <i class='fas fa-edit' style={{ color: 'white' }}></i>
             </button>
 
             <div
@@ -75,13 +86,14 @@ function CardComment ({ comment }) {
                   </div>
                   <div class='modal-body'>
                     <div class='float-right'>
-                      <form onSubmit={editClickComment}>
+                      <form onSubmit={handleEditSubmit}>
                         <div class='form-group'>
                           <input
                             type='text'
                             class='form-control'
                             id='body'
                             value={editComment.body}
+                            onChange={e => handleChange(e)}
                             placeholder='body'
                             name='body'
                           />

@@ -64,8 +64,9 @@ export function actionAddComments (payload) {
 export function actionFetchComment (payload) {
   return async function (dispatch, getState) {
     try {
-      localStorage.setItem('comment', JSON.stringify(payload))
-      dispatch(setComment())
+      console.log(payload)
+      //   localStorage.setItem('comment', JSON.stringify(payload))
+      //   dispatch(setComment(payload))
     } catch (err) {
       console.log(err)
     }
@@ -75,9 +76,27 @@ export function actionFetchComment (payload) {
 export function actionEditComment (payload) {
   return async function (dispatch, getState) {
     try {
-      console.log(payload)
-      //   localStorage.setItem('comment', JSON.stringify(payload))
-      //   dispatch(setComment())
+      const response = await fetch(
+        `${API_URL}/posts/${payload.post_id}/comments`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${API_KEY}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        }
+      )
+
+      const { data } = await response.json()
+      const comments = getState().commentState.comments
+      let comment = getState().commentState.comment
+      const indexComment = comments.findIndex(comment => comment.id === data.id)
+      comments[indexComment] = data
+      comment = comments[indexComment]
+      localStorage.setItem('comment', JSON.stringify(comment))
+      dispatch(setComment())
     } catch (err) {
       console.log(err)
     }
