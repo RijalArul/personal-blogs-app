@@ -4,22 +4,26 @@ import ImageAddTodos from '../assets/image/hands-character-writing-letter-desk-w
 import DateTimePicker from 'react-datetime-picker'
 import * as moment from 'moment'
 import CardTodos from '../components/CardTodos'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { actionAddTodos } from '../store/actions/todoActions'
 
 function Todos () {
+  const dispatch = useDispatch()
   const [value, onChange] = useState(new Date())
   const [todo, setTodo] = useState({})
   const { todos, status } = useSelector(state => state.todoState)
+  const { currentUser } = useSelector(state => state.userState)
 
   function handleAddTodo (e) {
     e.preventDefault()
-    console.log(todo)
+    dispatch(actionAddTodos(todo))
   }
 
   function handleChange (e) {
     setTodo({
       ...todo,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      user_id: currentUser.id
     })
   }
 

@@ -2,6 +2,7 @@ import { SET_TODOS } from '../keys'
 
 const initialState = {
   todos: [],
+  currentTodo: null,
   status: [
     {
       value: 'completed'
@@ -17,7 +18,6 @@ function todoReducer (state = initialState, action) {
   switch (type) {
     case SET_TODOS:
       return { ...state, todos: payload }
-
     default:
       return state
   }

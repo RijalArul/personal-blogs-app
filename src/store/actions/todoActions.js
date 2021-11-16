@@ -9,7 +9,7 @@ export function setTodos (payload) {
   }
 }
 
-export function actionFetchTodos (payload) {
+export function actionFetchTodos () {
   return async function (dispatch, getState) {
     try {
       const { currentUser } = getState().userState
@@ -25,6 +25,29 @@ export function actionFetchTodos (payload) {
 
       const { data } = await response.json()
       dispatch(setTodos(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function actionAddTodos (payload) {
+  return async function (dispatch, getState) {
+    try {
+      const response = await fetch(`${API_URL}/todos`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+
+      const { data } = await response.json()
+      const { todos } = getState().todoState
+      const result = [...todos, data]
+      dispatch(setTodos(result))
     } catch (err) {
       console.log(err)
     }
