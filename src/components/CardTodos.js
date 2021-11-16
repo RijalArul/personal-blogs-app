@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import * as moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
-import { actionFetchTodo, actionEditTodo } from '../store/actions/todoActions'
+import {
+  actionFetchTodo,
+  actionEditTodo,
+  actionDeleteTodo
+} from '../store/actions/todoActions'
 
 function CardTodos ({ todo }) {
   const dispatch = useDispatch()
@@ -30,7 +34,7 @@ function CardTodos ({ todo }) {
   }
 
   function deleteTodo (id) {
-    dispatch(actionDeleteTod(id))
+    dispatch(actionDeleteTodo(id))
   }
   return (
     <>

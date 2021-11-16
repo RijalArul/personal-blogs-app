@@ -103,10 +103,21 @@ export function actionEditTodo (payload) {
   }
 }
 
-export function deleteTodo (paylaod) {
+export function actionDeleteTodo (payload) {
   return async function (dispatch, getState) {
     try {
-      console.log(payload)
-    } catch (err) {}
+      await fetch(`${API_URL}/todos/${payload}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${API_KEY}`
+        }
+      })
+
+      const { todos } = getState().todoState
+      const newTodos = todos.filter(todo => todo.id !== payload)
+      dispatch(setTodos(newTodos))
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
