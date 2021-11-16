@@ -1,4 +1,4 @@
-function CardComment () {
+function CardComment ({ comments }) {
   return (
     <>
       <div className='mt-2 comment-card'>
@@ -6,7 +6,9 @@ function CardComment () {
           <div class='d-flex justify-content-between align-items-center'>
             <div class='d-flex flex-row align-items-center'>
               {' '}
-              <span class='mr-2 comment-card-text'>Brian selter</span>{' '}
+              <span class='mr-2 comment-card-text'>
+                <p>{comments.name}</p>
+              </span>{' '}
             </div>{' '}
             <small>12h ago</small>
           </div>

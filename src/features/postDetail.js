@@ -59,7 +59,14 @@ function PostDetail () {
                     </div>
                   </form>
                 </div>
-                <CardComment comments={comments} key={comments.id} />
+                {comments &&
+                  comments.map(comment => {
+                    return (
+                      <>
+                        <CardComment comment={comment} key={comment.id} />
+                      </>
+                    )
+                  })}
               </div>
             </div>
           </div>
