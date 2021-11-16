@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { actionFetchPost } from '../store/actions/postActions'
 function PostDetail () {
   const { id } = useParams()
-  console.log(id)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(actionFetchPost(id))
+  }, [dispatch])
+
   return (
     <>
       <Navbar />

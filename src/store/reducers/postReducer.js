@@ -1,6 +1,7 @@
 import { SET_POSTS } from '../keys'
 const initialState = {
-  posts: []
+  posts: [],
+  post: {}
 }
 
 function postReducer (state = initialState, action) {
