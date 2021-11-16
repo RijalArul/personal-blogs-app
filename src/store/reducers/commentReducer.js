@@ -2,7 +2,7 @@ import { SET_COMMENTS, SET_COMMENT } from '../keys'
 
 const initialState = {
   comments: [],
-  commentUser: {}
+  commentUser: JSON.parse(localStorage.getItem('comment'))
 }
 
 function commentReducer (state = initialState, action) {
@@ -11,7 +11,10 @@ function commentReducer (state = initialState, action) {
     case SET_COMMENTS:
       return { ...state, comments: payload }
     case SET_COMMENT:
-      return { ...state, commentUser: payload }
+      return {
+        ...state,
+        commentUser: JSON.parse(localStorage.getItem('comment'))
+      }
     default:
       return state
   }

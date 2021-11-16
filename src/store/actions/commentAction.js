@@ -64,7 +64,8 @@ export function actionAddComments (payload) {
 export function actionFetchComment (payload) {
   return async function (dispatch, getState) {
     try {
-      console.log(payload)
+      localStorage.setItem('comment', JSON.stringify(payload))
+      dispatch(setComment())
     } catch (err) {
       console.log(err)
     }
