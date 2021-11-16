@@ -29,7 +29,10 @@ function PostDetail () {
   function handleChange (e) {
     setComment({
       ...comment,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      email: currentUser.email,
+      name: currentUser.name,
+      post_id: post.id
     })
   }
 
