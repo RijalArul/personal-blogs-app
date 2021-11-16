@@ -1,7 +1,9 @@
 import React from 'react'
 import * as moment from 'moment'
+import { useSelector } from 'react-redux'
 
 function CardTodos ({ todo }) {
+  const { status } = useSelector(state => state.todoState)
   return (
     <>
       <div class='card mt-3 mb-3'>
@@ -11,9 +13,10 @@ function CardTodos ({ todo }) {
               `MMMM Do YYYY, h:mm:ss a`
             )}`}{' '}
             <select className='select-active'>
-              <option>1</option>
-              <option>1</option>
-              <option>1</option>
+              {status &&
+                status.map(status => {
+                  return <option value={status.value}>{status.value}</option>
+                })}
             </select>
             <button>Delete</button>
           </h5>
