@@ -10,7 +10,6 @@ function CardComment ({ comment }) {
   const [editComment, setEditComment] = useState({})
   const { commentUser } = useSelector(state => state.commentState)
 
-  console.log(editComment)
   useEffect(() => {
     setEditComment({
       ...commentUser
