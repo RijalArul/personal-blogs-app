@@ -13,10 +13,9 @@ function CardTodos ({ todo }) {
               `MMMM Do YYYY, h:mm:ss a`
             )}`}{' '}
             <select className='select-active'>
-              {status &&
-                status.map(status => {
-                  return <option value={status.value}>{status.value}</option>
-                })}
+              <option>1</option>
+              <option>1</option>
+              <option>1</option>
             </select>
             <button>Delete</button>
           </h5>

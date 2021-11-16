@@ -5,7 +5,7 @@ import DateTimePicker from 'react-datetime-picker'
 import * as moment from 'moment'
 import CardTodos from '../components/CardTodos'
 import { useSelector, useDispatch } from 'react-redux'
-import { actionAddTodos } from '../store/actions/todoActions'
+import { actionAddTodos, actionFetchTodos } from '../store/actions/todoActions'
 
 function Todos () {
   const dispatch = useDispatch()
@@ -13,6 +13,10 @@ function Todos () {
   const [todo, setTodo] = useState({})
   const { todos, status } = useSelector(state => state.todoState)
   const { currentUser } = useSelector(state => state.userState)
+
+  useEffect(() => {
+    dispatch(actionFetchTodos())
+  }, [dispatch])
 
   function handleAddTodo (e) {
     e.preventDefault()

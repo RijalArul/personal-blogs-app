@@ -13,15 +13,12 @@ export function actionFetchTodos () {
   return async function (dispatch, getState) {
     try {
       const { currentUser } = getState().userState
-      const response = await fetch(
-        `${API_URL}/users/${currentUser.user_id}/todos`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${API_KEY}`
-          }
+      const response = await fetch(`${API_URL}/users/${currentUser.id}/todos`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${API_KEY}`
         }
-      )
+      })
 
       const { data } = await response.json()
       dispatch(setTodos(data))
