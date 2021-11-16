@@ -1,4 +1,8 @@
+import { useSelector, useDispatch } from 'react-redux'
+
 function CardComment ({ comment }) {
+  const dispatch = useDispatch()
+  const { commentUser } = useSelector(state => state.commentState)
   function editClickComment (id) {
     console.log(id)
   }

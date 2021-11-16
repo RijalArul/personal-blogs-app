@@ -1,8 +1,8 @@
-import { SET_COMMENTS } from '../keys'
+import { SET_COMMENTS, SET_COMMENT } from '../keys'
 
 const initialState = {
   comments: [],
-  comment: {}
+  commentUser: {}
 }
 
 function commentReducer (state = initialState, action) {
@@ -11,7 +11,7 @@ function commentReducer (state = initialState, action) {
     case SET_COMMENTS:
       return { ...state, comments: payload }
     case SET_COMMENT:
-      return { ...state, comment: payload }
+      return { ...state, commentUser: payload }
     default:
       return state
   }
