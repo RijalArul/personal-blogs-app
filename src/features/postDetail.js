@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionFetchPost } from '../store/actions/postActions'
 import CardComment from '../components/CardComment'
+import { actionFetchComments } from '../store/actions/commentAction'
 function PostDetail () {
   const { id } = useParams()
   const { post } = useSelector(state => state.postState)
@@ -11,6 +12,10 @@ function PostDetail () {
   useEffect(() => {
     dispatch(actionFetchPost(id))
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch(actionFetchComments())
+  }, [])
 
   return (
     <>
