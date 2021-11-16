@@ -1,4 +1,6 @@
 import { SET_POSTS } from '../keys'
+const API_URL = `https://gorest.co.in/public/v1`
+const API_KEY = `89952a727d3410c631174eabfa05b6e684aa4cc790b1a15e56bbcc8905c5febe`
 
 export function setPosts (payload) {
   return {

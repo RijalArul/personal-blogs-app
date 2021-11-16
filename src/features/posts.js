@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import ImageAddTodos from '../assets/image/hands-character-writing-letter-desk-with-papers-pencil-envelopes-coffee-cup_74855-10720.jpg'
 import CardPosts from '../components/CardPosts'
+import { useSelector, useDispatch } from 'react-redux'
+import { actionFetchPosts } from '../store/actions/postActions'
 
 function Posts () {
+  const dispatch = useDispatch()
+  const { posts } = useSelector(state => state.postState)
+  console.log(posts)
+  useEffect(() => {
+    dispatch(actionFetchPosts())
+  }, [dispatch])
   return (
     <>
       <Navbar />
