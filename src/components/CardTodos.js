@@ -29,7 +29,9 @@ function CardTodos ({ todo }) {
     dispatch(actionFetchTodo(id))
   }
 
-  function deleteTodo (id) {}
+  function deleteTodo (id) {
+    dispatch(actionDeleteTod(id))
+  }
   return (
     <>
       <div class='card mt-3 mb-3'>
