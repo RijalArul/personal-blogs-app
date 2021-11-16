@@ -10,15 +10,15 @@ function CardComment ({ comment }) {
   const [editComment, setEditComment] = useState({})
   const { commentUser } = useSelector(state => state.commentState)
 
+  console.log(editComment)
   useEffect(() => {
     setEditComment({
       ...commentUser
     })
-  }, [])
+  }, [commentUser])
 
   function editClickComment (id) {
-    console.log(id)
-    // dispatch(actionFetchComment(comment))
+    dispatch(actionFetchComment(id))
   }
 
   function handleEditSubmit (e) {
@@ -28,7 +28,7 @@ function CardComment ({ comment }) {
 
   function handleChange (e) {
     setEditComment({
-      ...commentUser,
+      ...editComment,
       [e.target.name]: e.target.value
     })
   }
@@ -92,10 +92,10 @@ function CardComment ({ comment }) {
                             type='text'
                             class='form-control'
                             id='body'
-                            value={editComment.body}
-                            onChange={e => handleChange(e)}
-                            placeholder='body'
                             name='body'
+                            placeholder='body'
+                            onChange={e => handleChange(e)}
+                            value={editComment.body}
                           />
                         </div>
 

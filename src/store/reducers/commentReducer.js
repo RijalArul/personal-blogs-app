@@ -11,7 +11,6 @@ function commentReducer (state = initialState, action) {
     case SET_COMMENTS:
       return { ...state, comments: payload }
     case SET_COMMENT:
-      console.log(payload)
       return {
         ...state,
         commentUser: payload

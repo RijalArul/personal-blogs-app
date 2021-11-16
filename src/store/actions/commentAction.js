@@ -64,9 +64,15 @@ export function actionAddComments (payload) {
 export function actionFetchComment (payload) {
   return async function (dispatch, getState) {
     try {
-      console.log(payload)
-      //   localStorage.setItem('comment', JSON.stringify(payload))
-      //   dispatch(setComment(payload))
+      const response = await fetch(`${API_URL}/comments/${payload}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${API_KEY}`
+        }
+      })
+
+      const { data } = await response.json()
+      dispatch(setComment(data))
     } catch (err) {
       console.log(err)
     }
