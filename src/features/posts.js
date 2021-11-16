@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import ImageAddTodos from '../assets/image/hands-character-writing-letter-desk-with-papers-pencil-envelopes-coffee-cup_74855-10720.jpg'
+import CardPosts from '../components/CardPosts'
 
 function Posts () {
   return (
@@ -83,33 +84,7 @@ function Posts () {
             </div>
           </div>
         </div>
-        <div class='card mt-5'>
-          <div class='card-header'>User</div>
-          <div class='card-body'>
-            <h3>Title</h3>
-            <p class='card-text'>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
-            <a href='#' class='btn btn-primary'>
-              Go somewhere
-            </a>
-          </div>
-        </div>
-
-        <div class='card mt-5'>
-          <div class='card-header'>User</div>
-          <div class='card-body'>
-            <h3>Title</h3>
-            <p class='card-text'>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
-            <a href='#' class='btn btn-primary'>
-              Go somewhere
-            </a>
-          </div>
-        </div>
+        <CardPosts />
       </div>
     </>
   )
