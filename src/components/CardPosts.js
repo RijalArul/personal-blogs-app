@@ -1,18 +1,16 @@
 import react from 'react'
 
-function CardPosts () {
+function CardPosts ({ post }) {
+  console.log(post)
   return (
     <>
       <div class='card mt-5'>
-        <div class='card-header'>User</div>
+        <div class='card-header'>{post.user_id}</div>
         <div class='card-body'>
-          <h3>Title</h3>
-          <p class='card-text'>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
+          <h3>{post.title}</h3>
+          <p class='card-text'>{post.body}</p>
           <a href='#' class='btn btn-primary'>
-            Go somewhere
+            See the comment
           </a>
         </div>
       </div>

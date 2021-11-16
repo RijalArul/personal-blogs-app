@@ -8,7 +8,6 @@ import { actionFetchPosts } from '../store/actions/postActions'
 function Posts () {
   const dispatch = useDispatch()
   const { posts } = useSelector(state => state.postState)
-  console.log(posts)
   useEffect(() => {
     dispatch(actionFetchPosts())
   }, [dispatch])
@@ -92,7 +91,14 @@ function Posts () {
             </div>
           </div>
         </div>
-        <CardPosts />
+        {posts &&
+          posts.map(post => {
+            return (
+              <>
+                <CardPosts post={post} key={post.id} />
+              </>
+            )
+          })}
       </div>
     </>
   )
