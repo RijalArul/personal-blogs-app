@@ -11,20 +11,15 @@ function PostDetail () {
     dispatch(actionFetchPost(id))
   }, [dispatch])
 
-  console.log(post)
-
   return (
     <>
       <Navbar />
       <div className='container'>
         <div class='card mt-5 card-post-detail'>
-          <div class='card-header'>User</div>
+          <div class='card-header'>{post.user_id}</div>
           <div class='card-body'>
-            <h3>Title</h3>
-            <p class='card-text'>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
+            <h3>{post.title}</h3>
+            <p class='card-text'>{post.body}</p>
           </div>
         </div>
 
