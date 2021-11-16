@@ -145,7 +145,7 @@ input[type='text'] {
 
 .card-body-todos {
   background-color: rgba(128, 128, 128, 0.1);
-  height: 55px;
+  height: 100px;
   text-align: center;
 }
 
@@ -230,4 +230,12 @@ input[type='text'] {
 
 .text-navbar {
   color: #ffffff;
+}
+
+.btn-edit-todos {
+  margin-top: 5px;
+  width: 20%;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 10%;
 }

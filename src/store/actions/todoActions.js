@@ -1,10 +1,17 @@
-import { SET_TODOS } from '../keys'
+import { SET_TODO, SET_TODOS } from '../keys'
 const API_URL = `https://gorest.co.in/public/v1`
 const API_KEY = `89952a727d3410c631174eabfa05b6e684aa4cc790b1a15e56bbcc8905c5febe`
 
 export function setTodos (payload) {
   return {
     type: SET_TODOS,
+    payload
+  }
+}
+
+export function setTodo (payload) {
+  return {
+    type: SET_TODO,
     payload
   }
 }
@@ -45,6 +52,23 @@ export function actionAddTodos (payload) {
       const { todos } = getState().todoState
       const result = [...todos, data]
       dispatch(setTodos(result))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function actionFetchTodo (payload) {
+  return async function (dispatch, getState) {
+    try {
+      const response = await fetch(`${API_URL}/todos/${payload}`, {
+        headers: {
+          Authorization: `Bearer ${API_KEY}`
+        }
+      })
+
+      const { data } = await response.json()
+      dispatch(setTodo(data))
     } catch (err) {
       console.log(err)
     }
