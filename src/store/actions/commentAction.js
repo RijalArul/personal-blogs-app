@@ -107,6 +107,22 @@ export function actionEditComment (payload) {
 
 export function actionDeleteComment (payload) {
   return async function (dispatch, getState) {
-    console.log(payload)
+    try {
+      await fetch(`${API_URL}/comments/${payload}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+
+      const { comments } = getState().commentState
+      const newComments = comments.filter(comment => comment.id !== payload)
+      dispatch(setComments(newComments))
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
