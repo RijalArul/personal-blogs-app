@@ -4,7 +4,10 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionFetchPost } from '../store/actions/postActions'
 import CardComment from '../components/CardComment'
-import { actionFetchComments } from '../store/actions/commentAction'
+import {
+  actionAddComments,
+  actionFetchComments
+} from '../store/actions/commentAction'
 function PostDetail () {
   const [comment, setComment] = useState({})
   const { id } = useParams()
@@ -23,7 +26,7 @@ function PostDetail () {
 
   function handleAddComment (e) {
     e.preventDefault()
-    console.log(comment)
+    dispatch(actionAddComments(comment))
   }
 
   function handleChange (e) {
