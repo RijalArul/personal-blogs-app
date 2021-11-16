@@ -104,3 +104,9 @@ export function actionEditComment (payload) {
     }
   }
 }
+
+export function actionDeleteComment (payload) {
+  return async function (dispatch, getState) {
+    console.log(payload)
+  }
+}

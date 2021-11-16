@@ -1,6 +1,7 @@
 import react, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  actionDeleteComment,
   actionEditComment,
   actionFetchComment
 } from '../store/actions/commentAction'
@@ -21,7 +22,7 @@ function CardComment ({ comment }) {
   }
 
   function deleteComment (id) {
-    console.log(id)
+    dispatch(actionDeleteComment(id))
   }
 
   function handleEditSubmit (e) {
