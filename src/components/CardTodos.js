@@ -7,14 +7,16 @@ function CardTodos ({ todo }) {
   const dispatch = useDispatch()
   const [statusTodo, setStatusTodo] = useState({})
   const { status, todoStatus } = useSelector(state => state.todoState)
-
-  console.log(statusTodo)
   useEffect(() => {
     setStatusTodo({
-      ...statusTodo,
-      statusTodo: todoStatus
+      ...todoStatus
     })
-  }, [])
+  }, [todoStatus])
+
+  function handleEditTodo (e) {
+    e.preventDefault()
+    console.log(statusTodo)
+  }
 
   function editClick (id) {
     dispatch(actionFetchTodo(id))
