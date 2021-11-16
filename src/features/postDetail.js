@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionFetchPost } from '../store/actions/postActions'
+import CardComment from '../components/CardComment'
 function PostDetail () {
   const { id } = useParams()
   const { post } = useSelector(state => state.postState)
@@ -51,33 +52,7 @@ function PostDetail () {
                     </div>
                   </form>
                 </div>
-                <div className='mt-2 comment-card'>
-                  <div class='w-100'>
-                    <div class='d-flex justify-content-between align-items-center'>
-                      <div class='d-flex flex-row align-items-center'>
-                        {' '}
-                        <span class='mr-2 comment-card-text'>
-                          Brian selter
-                        </span>{' '}
-                      </div>{' '}
-                      <small>12h ago</small>
-                    </div>
-                    <p class='text-justify comment-text mb-0 comment-card-text'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam
-                    </p>
-                    <div class='d-flex flex-row user-feed'>
-                      {' '}
-                      <span class='wish'>
-                        <i class='fa fa-heartbeat mr-2'></i>
-                      </span>{' '}
-                      <span class='ml-3'>
-                        <i class='fa fa-comments-o mr-2'></i>
-                      </span>{' '}
-                    </div>
-                  </div>
-                </div>
+                <CardComment />
               </div>
             </div>
           </div>
