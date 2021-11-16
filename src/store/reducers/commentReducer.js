@@ -10,6 +10,8 @@ function commentReducer (state = initialState, action) {
   switch (type) {
     case SET_COMMENTS:
       return { ...state, comments: payload }
+    case SET_COMMENT:
+      return { ...state, comment: payload }
     default:
       return state
   }
