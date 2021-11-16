@@ -1,7 +1,9 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-
+import { useParams } from 'react-router-dom'
 function PostDetail () {
+  const { id } = useParams()
+  console.log(id)
   return (
     <>
       <Navbar />

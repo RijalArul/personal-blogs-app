@@ -43,7 +43,6 @@ export function actionAddPost (payload) {
       const { data } = await response.json()
       const { posts } = getState().postState
       const newPosts = [...posts, data]
-      console.log(newPosts)
       dispatch(setPosts(newPosts))
     } catch (err) {
       console.log(err)
