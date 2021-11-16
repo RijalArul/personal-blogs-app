@@ -5,11 +5,14 @@ import { actionFetchTodo } from '../store/actions/todoActions'
 
 function CardTodos ({ todo }) {
   const dispatch = useDispatch()
-  const [statusTodo, setStatusTodo] = useState()
-  const { status } = useSelector(state => state.todoState)
+  const [statusTodo, setStatusTodo] = useState({})
+  const { status, todoStatus } = useSelector(state => state.todoState)
+
+  console.log(statusTodo)
   useEffect(() => {
     setStatusTodo({
-      statusTodo: todo.status
+      ...statusTodo,
+      statusTodo: todoStatus
     })
   }, [])
 

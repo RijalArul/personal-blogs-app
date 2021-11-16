@@ -1,7 +1,8 @@
-import { SET_TODOS } from '../keys'
+import { SET_TODO, SET_TODOS } from '../keys'
 
 const initialState = {
   todos: [],
+  todoStatus: {},
   currentTodo: null,
   status: [
     {
@@ -18,6 +19,8 @@ function todoReducer (state = initialState, action) {
   switch (type) {
     case SET_TODOS:
       return { ...state, todos: payload }
+    case SET_TODO:
+      return { ...state, todoStatus: payload }
     default:
       return state
   }
