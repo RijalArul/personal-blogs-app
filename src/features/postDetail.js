@@ -8,13 +8,15 @@ import { actionFetchComments } from '../store/actions/commentAction'
 function PostDetail () {
   const { id } = useParams()
   const { post } = useSelector(state => state.postState)
+  const { comments } = useSelector(state => state.commentState)
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(actionFetchPost(id))
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(actionFetchComments())
+    dispatch(actionFetchComments(id))
   }, [])
 
   return (
@@ -57,7 +59,7 @@ function PostDetail () {
                     </div>
                   </form>
                 </div>
-                <CardComment />
+                <CardComment comments={comments} key={comments.id} />
               </div>
             </div>
           </div>
