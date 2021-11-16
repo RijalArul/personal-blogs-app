@@ -6,9 +6,11 @@ import { actionFetchPost } from '../store/actions/postActions'
 import CardComment from '../components/CardComment'
 import { actionFetchComments } from '../store/actions/commentAction'
 function PostDetail () {
+  const [comment, setComment] = useState({})
   const { id } = useParams()
   const { post } = useSelector(state => state.postState)
   const { comments } = useSelector(state => state.commentState)
+  const { currentUser } = useSelector(state => state.userState)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -18,6 +20,18 @@ function PostDetail () {
   useEffect(() => {
     dispatch(actionFetchComments(id))
   }, [])
+
+  function handleAddComment (e) {
+    e.preventDefault()
+    console.log(comment)
+  }
+
+  function handleChange (e) {
+    setComment({
+      ...comment,
+      [e.target.name]: e.target.value
+    })
+  }
 
   return (
     <>
@@ -39,7 +53,7 @@ function PostDetail () {
                   <h6>Comments</h6>
                 </div>
                 <div class='mt-3 d-flex flex-row align-items-center p-3 form-color'>
-                  <form class='row g-3'>
+                  <form class='row g-3' onSubmit={handleAddComment}>
                     <div class='col-auto'>
                       <label for='inputComment2' class='visually-hidden'>
                         comment
@@ -48,7 +62,9 @@ function PostDetail () {
                         type='text'
                         className='form-control comment-text-input'
                         id='inputcomment2'
+                        name='body'
                         placeholder='comment'
+                        onChange={e => handleChange(e)}
                         style={{ width: '435px', resize: 'vertical' }}
                       />
                     </div>
