@@ -15,7 +15,7 @@ function Posts () {
 
   function handleAddPost (e) {
     e.preventDefault()
-    console.log(addPost)
+    dispatch()
   }
 
   function handleChange (e) {

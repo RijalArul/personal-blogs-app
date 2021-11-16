@@ -26,3 +26,26 @@ export function actionFetchPosts () {
     }
   }
 }
+
+export function actionAddPost (payload) {
+  return async function (dispatch, getState) {
+    try {
+      const response = await fetch(`${API_URL}/posts`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(payload)
+      })
+
+      const { data } = await response.json()
+      const { posts } = getState().postState
+      const newPosts = posts.unshift(data)
+      dispatch(setPosts(newPosts))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
