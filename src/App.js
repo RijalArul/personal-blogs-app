@@ -31,18 +31,18 @@ function App () {
           }
         />
         <Route
-          path='/posts'
-          element={
-            <PrivateRoutes>
-              <Posts />
-            </PrivateRoutes>
-          }
-        />
-        <Route
           path='/posts/:id'
           element={
             <PrivateRoutes>
               <PostDetail />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path='/'
+          element={
+            <PrivateRoutes>
+              <Posts />
             </PrivateRoutes>
           }
         />
