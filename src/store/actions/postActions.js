@@ -16,7 +16,7 @@ export function setPost (payload) {
   }
 }
 
-export function actionFetchPosts () {
+export function actionFetchPosts (payload) {
   return async function (dispatch) {
     try {
       const response = await fetch(`${API_URL}/posts`, {
@@ -25,7 +25,23 @@ export function actionFetchPosts () {
           Authorization: `Bearer ${API_KEY}`
         }
       })
+      const { data } = await response.json()
+      dispatch(setPosts(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
 
+export function actionSearchTitle (payload) {
+  return async function (dispatch) {
+    try {
+      const response = await fetch(`${API_URL}/posts?title=${payload}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${API_KEY}`
+        }
+      })
       const { data } = await response.json()
       dispatch(setPosts(data))
     } catch (err) {
@@ -66,7 +82,6 @@ export function actionFetchPost (payload) {
           Authorization: `Bearer ${API_KEY}`
         }
       })
-
       const { data } = await response.json()
       dispatch(setPost(data))
     } catch (err) {

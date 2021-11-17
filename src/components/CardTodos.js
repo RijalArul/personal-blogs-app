@@ -120,9 +120,9 @@ function CardTodos ({ todo }) {
             </div>
             <button
               className='btn btn-danger'
-              onClick={id => deleteTodo(todo.id)}
+              onClick={() => deleteTodo(todo.id)}
             >
-              Delete
+              <i class='fas fa-trash' style={{ color: 'white' }}></i>
             </button>
           </h5>
         </div>

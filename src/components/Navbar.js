@@ -17,15 +17,6 @@ function Navbar () {
     <>
       <nav class='navbar navbar-expand-lg navbar-light '>
         <div class='container-fluid'>
-          <a class='navbar-brand' href='#'>
-            <img
-              src={ImageNavbar}
-              width='60'
-              height='60'
-              class='d-inline-block align-top'
-              alt=''
-            />
-          </a>
           <button
             class='navbar-toggler'
             type='button'

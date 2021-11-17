@@ -248,3 +248,15 @@ input[type='text'] {
 .comment-card-text {
   margin-left: 30px;
 }
+.container-speech {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.box {
+  min-height: 10px;
+  margin: 30px;
+  padding: 20px;
+  border-radius: 5px;
+}

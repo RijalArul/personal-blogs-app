@@ -130,7 +130,7 @@ function CardComment ({ comment }) {
               style={{ marginRight: '10px' }}
               onClick={() => deleteComment(comment.id)}
             >
-              <i class='fas fa-trash-alt' style={{ color: '#FE5320' }}></i>
+              <i class='fas fa-trash-alt' style={{ color: 'white' }}></i>
             </button>
           </div>
         </div>
