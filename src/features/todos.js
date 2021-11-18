@@ -5,18 +5,32 @@ import DateTimePicker from 'react-datetime-picker'
 import * as moment from 'moment'
 import CardTodos from '../components/CardTodos'
 import { useSelector, useDispatch } from 'react-redux'
-import { actionAddTodos, actionFetchTodos } from '../store/actions/todoActions'
+import {
+  actionAddTodos,
+  actionFetchTodos,
+  setErrors
+} from '../store/actions/todoActions'
+import { toast } from 'react-toastify'
 
 function Todos () {
   const dispatch = useDispatch()
   const [value, onChange] = useState(new Date())
   const [todo, setTodo] = useState({})
-  const { todos, status } = useSelector(state => state.todoState)
+  const { todos, status, errors } = useSelector(state => state.todoState)
   const { currentUser } = useSelector(state => state.userState)
 
   useEffect(() => {
     dispatch(actionFetchTodos())
   }, [dispatch])
+
+  useEffect(() => {
+    if (errors) {
+      errors.forEach(error => {
+        toast.error(error.message)
+      })
+      dispatch(setErrors(''))
+    }
+  })
 
   function handleAddTodo (e) {
     e.preventDefault()

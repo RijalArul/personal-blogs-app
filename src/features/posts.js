@@ -6,8 +6,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   actionAddPost,
   actionFetchPosts,
-  actionSearchTitle
+  actionSearchTitle,
+  setErrors
 } from '../store/actions/postActions'
+import Pagination from './Pagination'
+import { toast } from 'react-toastify'
+
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognition()
@@ -21,8 +25,10 @@ function Posts () {
   const [addPost, setAddPost] = useState({})
   const [isListening, setIsListening] = useState(false)
   const [note, setNote] = useState(null)
-  const { posts } = useSelector(state => state.postState)
+  const { posts, errors } = useSelector(state => state.postState)
   const { currentUser } = useSelector(state => state.userState)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(10)
 
   useEffect(() => {
     handleListen()
@@ -31,6 +37,16 @@ function Posts () {
   useEffect(() => {
     dispatch(actionFetchPosts())
   }, [])
+
+  useEffect(() => {
+    if (errors) {
+      errors.forEach(error => {
+        toast.error(error.message)
+      })
+      dispatch(setErrors(''))
+    }
+  })
+
   const handleListen = () => {
     if (isListening) {
       mic.start()
@@ -77,6 +93,12 @@ function Posts () {
       user_id: currentUser.id
     })
   }
+
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = pageNumber => setCurrentPage(pageNumber)
 
   return (
     <>
@@ -186,14 +208,19 @@ function Posts () {
             </div>
           </div>
         </div>
-        {posts &&
-          posts.map(post => {
+        {currentPosts &&
+          currentPosts.map(post => {
             return (
               <>
                 <CardPosts post={post} key={post.id} />
               </>
             )
           })}
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={posts.length}
+          paginate={paginate}
+        />
       </div>
     </>
   )

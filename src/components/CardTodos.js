@@ -44,15 +44,27 @@ function CardTodos ({ todo }) {
             {`${todo.title}, ${moment(todo.due_on).format(
               `MMMM Do YYYY, h:mm:ss a`
             )}`}{' '}
-            <button
-              type='button'
-              className='btn btn-primary btn-edit-todos'
-              data-toggle='modal'
-              data-target='#editTodos'
-              onClick={() => editClick(todo.id)}
-            >
-              {todo.status}
-            </button>
+            {todo.status === 'completed' ? (
+              <button
+                type='button'
+                className='btn btn-success btn-edit-todos'
+                data-toggle='modal'
+                data-target='#editTodos'
+                onClick={() => editClick(todo.id)}
+              >
+                {todo.status}
+              </button>
+            ) : (
+              <button
+                type='button'
+                className='btn btn-warning btn-edit-todos'
+                data-toggle='modal'
+                data-target='#editTodos'
+                onClick={() => editClick(todo.id)}
+              >
+                {todo.status}
+              </button>
+            )}
             <div
               class='modal fade'
               id='editTodos'

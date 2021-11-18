@@ -1,4 +1,4 @@
-import { SET_POST, SET_POSTS } from '../keys'
+import { SET_POST, SET_POSTS, SET_ERRORS } from '../keys'
 const API_URL = `https://gorest.co.in/public/v1`
 const API_KEY = `89952a727d3410c631174eabfa05b6e684aa4cc790b1a15e56bbcc8905c5febe`
 
@@ -12,6 +12,13 @@ export function setPosts (payload) {
 export function setPost (payload) {
   return {
     type: SET_POST,
+    payload
+  }
+}
+
+export function setErrors (payload) {
+  return {
+    type: SET_ERRORS,
     payload
   }
 }
@@ -63,12 +70,25 @@ export function actionAddPost (payload) {
         body: JSON.stringify(payload)
       })
 
-      const { data } = await response.json()
-      const { posts } = getState().postState
-      const newPosts = [...posts, data]
-      dispatch(setPosts(newPosts))
+      if (response.status === 422) {
+        const { data } = await response.json()
+        throw { name: 'Error_Posts', errors: data }
+      } else {
+        const { data } = await response.json()
+        const { posts } = getState().postState
+        const newPosts = [...posts, data]
+        dispatch(setPosts(newPosts))
+      }
     } catch (err) {
-      console.log(err)
+      if (err.name === 'Error_Posts') {
+        const errors = err.errors.map(error => {
+          return {
+            message: `${error.field}: ${error.message}`
+          }
+        })
+
+        dispatch(setErrors(errors))
+      }
     }
   }
 }

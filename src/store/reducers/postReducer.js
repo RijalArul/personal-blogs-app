@@ -1,7 +1,8 @@
-import { SET_POST, SET_POSTS } from '../keys'
+import { SET_POST, SET_POSTS, SET_ERRORS } from '../keys'
 const initialState = {
   posts: [],
-  post: {}
+  post: {},
+  errors: []
 }
 
 function postReducer (state = initialState, action) {
@@ -11,6 +12,8 @@ function postReducer (state = initialState, action) {
       return { ...state, posts: payload }
     case SET_POST:
       return { ...state, post: payload }
+    case SET_ERRORS:
+      return { ...state, errors: payload }
     default:
       return state
   }

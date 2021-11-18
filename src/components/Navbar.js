@@ -6,7 +6,7 @@ function Navbar () {
   const navigation = useNavigate()
 
   function navigatePosts () {
-    navigation('/posts')
+    navigation('/')
   }
 
   function navigationTodos () {

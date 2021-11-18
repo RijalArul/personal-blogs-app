@@ -1,4 +1,4 @@
-import { SET_TODO, SET_TODOS } from '../keys'
+import { SET_TODO, SET_TODOS, SET_ERRORS } from '../keys'
 const API_URL = `https://gorest.co.in/public/v1`
 const API_KEY = `89952a727d3410c631174eabfa05b6e684aa4cc790b1a15e56bbcc8905c5febe`
 
@@ -12,6 +12,13 @@ export function setTodos (payload) {
 export function setTodo (payload) {
   return {
     type: SET_TODO,
+    payload
+  }
+}
+
+export function setErrors (payload) {
+  return {
+    type: SET_ERRORS,
     payload
   }
 }
@@ -48,12 +55,25 @@ export function actionAddTodos (payload) {
         body: JSON.stringify(payload)
       })
 
-      const { data } = await response.json()
-      const { todos } = getState().todoState
-      const result = [...todos, data]
-      dispatch(setTodos(result))
+      if (response.status === 422) {
+        const { data } = await response.json()
+        throw { name: 'Error_Todos', errors: data }
+      } else {
+        const { data } = await response.json()
+        const { todos } = getState().todoState
+        const result = [...todos, data]
+        dispatch(setTodos(result))
+      }
     } catch (err) {
-      console.log(err)
+      if (err.name === 'Error_Todos') {
+        const errors = err.errors.map(error => {
+          return {
+            message: `${error.field}: ${error.message}`
+          }
+        })
+
+        dispatch(setErrors(errors))
+      }
     }
   }
 }
