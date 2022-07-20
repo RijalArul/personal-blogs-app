@@ -21,7 +21,7 @@ function Register () {
     if (localStorage.getItem('currentUser')) {
       toast.success('Register sucess')
       setTimeout(() => {
-        navigation('/todos')
+        navigation('/')
       }, 2000)
     }
   }, [dispatch, errors])

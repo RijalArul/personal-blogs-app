@@ -83,14 +83,19 @@ function Posts () {
 
   function handleAddPost (e) {
     e.preventDefault()
-    dispatch(actionAddPost(addPost))
+    const { title, body } = addPost
+    const payloadPost = {
+      title,
+      body,
+      user_id: currentUser.id
+    }
+    dispatch(actionAddPost(payloadPost))
   }
 
   function handleChange (e) {
     setAddPost({
       ...addPost,
-      [e.target.name]: e.target.value,
-      user_id: currentUser.id
+      [e.target.name]: e.target.value
     })
   }
 

@@ -69,7 +69,6 @@ export function actionAddPost (payload) {
         },
         body: JSON.stringify(payload)
       })
-
       if (response.status === 422) {
         const { data } = await response.json()
         throw { name: 'Error_Posts', errors: data }
